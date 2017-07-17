@@ -30,10 +30,10 @@ function fromVectorTileJs (tile) {
  * @param {Object} layers - An object mapping layer names to geojson-vt-created vector tile objects
  * @return {Buffer} uncompressed, pbf-serialized tile data
  */
-function fromGeojsonVt (layers) {
+function fromGeojsonVt (layers, options) {
   var l = {}
   for (var k in layers) {
-    l[k] = new GeoJSONWrapper(layers[k].features)
+    l[k] = new GeoJSONWrapper(layers[k].features, options)
     l[k].name = k
   }
   return fromVectorTileJs({layers: l})
